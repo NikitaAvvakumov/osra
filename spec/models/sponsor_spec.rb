@@ -1,52 +1,79 @@
 require 'rails_helper'
 
 describe Sponsor, type: :model do
+  subject(:sponsor) { build_stubbed(:sponsor) }
 
-  before(:each) do
-    Status.create(name: "Under Revision", code: 4)
-    @type = SponsorType.create(name: 'Individual', code: 1)
+  it { is_expected.to be_valid }
+
+  describe 'validations' do
+    context 'when name is missing' do
+      before { sponsor.name = '' }
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when country is missing' do
+      before { sponsor.country = '' }
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when sponsor_type is missing' do
+      before { sponsor.sponsor_type = nil }
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when sponsor gender is either Male or Female' do
+      %w(Male Female).each do |gender|
+        before { sponsor.gender = gender }
+        it { is_expected.to be_valid }
+      end
+    end
+
+    context 'when sponsor gender is neither Male nor Female' do
+      ['Yes', 77, %w(a b)].each do |not_gender|
+        before { sponsor.gender = not_gender }
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    context 'when start_date is set in the future' do
+      before { sponsor.sponsorship_start_date = Date.tomorrow }
+      it { is_expected.not_to be_valid }
+    end
   end
 
-  it "should not be valid without a name" do
-    expect(Sponsor.new(country: 'syria', sponsor_type: @type)).to be_invalid
-  end
+  describe 'before_create callback' do
+    # Need non-persisted sponsor to trigger before_create callback
+    let(:callback_sponsor) { build(:sponsor, sponsor_type: build_stubbed(:sponsor_type)) }
 
-  it "should not be valid without a country" do
-    expect(Sponsor.new(name: 'sponsor1', sponsor_type: @type)).to be_invalid
-  end
+    describe '#set_defaults' do
+      describe 'status' do
+        let!(:under_revision_status) { create(:status, name: 'Under Revision', code: 4) }
+        let(:active_status) { build_stubbed(:status, name: 'Active', code: 1) }
 
-  it "should not be valid without a type" do
-    expect(Sponsor.new(name: 'sponsor1', country: 'syria')).to be_invalid
-  end
+        it 'defaults status to Under Revision' do
+          callback_sponsor.save!
+          expect(callback_sponsor.status).to eq under_revision_status
+        end
 
-  it "should have a valid name, country and type" do
-    expect(Sponsor.new(name: 'sponsor1', country: 'syria', sponsor_type: @type, gender: 'Male')).to be_valid
-  end
+        it 'sets non-default status when specified' do
+          callback_sponsor.status = active_status
+          callback_sponsor.save!
+          expect(callback_sponsor.status).to eq active_status
+        end
+      end
 
-  it 'should set default status "Under Revision" unless specified' do
-    sponsor = Sponsor.create(name: 'sponsor1', country: 'syria', sponsor_type: @type, gender: 'Male')
-    expect(sponsor.status).to eq Status.find_by_name('Under Revision')
-  end
+      describe 'start_date' do
+        it 'defaults start_date to current date' do
+          callback_sponsor.save!
+          expect(callback_sponsor.sponsorship_start_date).to eq Date.current
+        end
 
-  it 'should set the custom status when specified' do
-    status = Status.create(name: "Active", code: 1)
-    sponsor = Sponsor.new(name: 'sponsor1', country: 'syria', status: status, sponsor_type: @type)
-    expect(sponsor.status).to eq status
+        it 'sets non-default date when specified' do
+          callback_sponsor.sponsorship_start_date = Date.yesterday
+          callback_sponsor.save!
+          expect(callback_sponsor.sponsorship_start_date).to eq Date.yesterday
+        end
+      end
+    end
   end
-
-  it 'sponsorship start date should default to today date' do
-    sponsor = Sponsor.create(name: 'sponsor1', country: 'syria', sponsor_type: @type, gender: 'Male')
-    expect(sponsor.sponsorship_start_date).to eq Date.current
-  end
-
-  it 'sponsorship start date should be set to a custom date when specified' do
-    sponsor = Sponsor.create(name: 'sponsor1', country: 'syria', sponsor_type: @type, sponsorship_start_date: Date.yesterday)
-    expect(sponsor.sponsorship_start_date).to eq Date.yesterday
-  end
-
-  it 'sponsorship start date should not be in the future' do
-    sponsor = Sponsor.new(name: 'sponsor1', country: 'syria', :sponsorship_start_date => Date.tomorrow)
-    expect(sponsor).to be_invalid
-  end
-
 end

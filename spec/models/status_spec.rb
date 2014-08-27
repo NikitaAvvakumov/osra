@@ -1,25 +1,29 @@
 require 'rails_helper'
 
 describe Status, type: :model do
-  it "should not be valid without a name" do
-    expect(Status.new(:code => 1)).to be_invalid
-  end
+  subject(:status) { build_stubbed(:status) }
 
-  it "should not be valid without a code" do
-    expect(Status.new(:name => "Status")).to be_invalid
-  end
+  it { is_expected.to be_valid }
 
-  it "should have a valid name and code" do
-    expect(Status.new(:name => "Status", :code => 1)).to be_valid
-  end
+  describe 'validations' do
+    context 'when name is missing' do
+      before { status.name = '' }
+      it { is_expected.not_to be_valid }
+    end
 
-  it "name should be unique" do
-    Status.create(:name => "Status", :code => 1)
-    expect(Status.new(:name => "Status", :code => 2)).to be_invalid
-  end
+    context 'when code is missing' do
+      before { status.code = '' }
+      it { is_expected.not_to be_valid }
+    end
 
-  it "code should be unique" do
-    Status.create(:name => "Status", :code => 1)
-    expect(Status.new(:name => "Status 2", :code => 1)).to be_invalid
+    context 'when name is not unique' do
+      before { create(:status, name: status.name) }
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when code is not unique' do
+      before { create(:status, code: status.code) }
+      it { is_expected.not_to be_valid }
+    end
   end
 end
