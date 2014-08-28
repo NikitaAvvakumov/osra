@@ -19,7 +19,7 @@ describe SponsorType, type: :model do
     context 'when name is not unique' do
       before { create(:sponsor_type, name: sponsor_type.name) }
       it { is_expected.not_to be_valid }
-      end
+    end
 
     context 'when code is not unique' do
       before { create(:sponsor_type, code: sponsor_type.code) }
