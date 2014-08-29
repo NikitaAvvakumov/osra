@@ -6,24 +6,9 @@ describe Status, type: :model do
   it { is_expected.to be_valid }
 
   describe 'validations' do
-    context 'when name is missing' do
-      before { status.name = '' }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when code is missing' do
-      before { status.code = '' }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when name is not unique' do
-      before { create(:status, name: status.name) }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when code is not unique' do
-      before { create(:status, code: status.code) }
-      it { is_expected.not_to be_valid }
-    end
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :code }
+    it { is_expected.to validate_uniqueness_of :name }
+    it { is_expected.to validate_uniqueness_of :code }
   end
 end

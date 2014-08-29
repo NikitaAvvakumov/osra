@@ -6,34 +6,12 @@ describe Sponsor, type: :model do
   it { is_expected.to be_valid }
 
   describe 'validations' do
-    context 'when name is missing' do
-      before { sponsor.name = '' }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when country is missing' do
-      before { sponsor.country = '' }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when sponsor_type is missing' do
-      before { sponsor.sponsor_type = nil }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when sponsor gender is either Male or Female' do
-      %w(Male Female).each do |gender|
-        before { sponsor.gender = gender }
-        it { is_expected.to be_valid }
-      end
-    end
-
-    context 'when sponsor gender is neither Male nor Female' do
-      ['Yes', 77, %w(a b)].each do |not_gender|
-        before { sponsor.gender = not_gender }
-        it { is_expected.not_to be_valid }
-      end
-    end
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :country }
+    it { is_expected.to validate_presence_of :sponsor_type }
+    it { is_expected.to ensure_inclusion_of(:gender).in_array %w(Male Female) }
+    it { is_expected.to belong_to :status }
+    it { is_expected.to belong_to :sponsor_type }
 
     context 'when start_date is set in the future' do
       before { sponsor.sponsorship_start_date = Date.tomorrow }

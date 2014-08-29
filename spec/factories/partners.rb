@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :partner do
     sequence(:name) { |n| "Name #{n}" }
-    province
+    province Province.first
   end
 end
