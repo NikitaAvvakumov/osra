@@ -52,9 +52,8 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_girl_rails', require: false
 end
-
-gem 'factory_girl_rails', group: [:development, :test]
 
 gem "devise"
 gem "jquery-rails"
