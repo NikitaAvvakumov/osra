@@ -1,0 +1,15 @@
+#modal
+  h2 New Sponsorship
+  p.modal-description New Sponsorship
+
+  section.sponsor
+    h3 Sponsor #{@sponsorship.sponsor.name}
+    h4 OSRA No. #{@sponsorship.sponsor.osra_num}
+    p Country: #{ISO3166::Country.search(@sponsorship.sponsor.country)}
+    p Additional info: #{@sponsorship.sponsor.additional_info}
+
+  section.orphan
+    h3 Orphan: #{@sponsorship.orphan.name}
+    h4 OSRA No. #{@sponsorship.orphan.osra_num}
+    p Priority: #{@sponsorship.orphan.priority}
+    p Current sponsorship status: #{@sponsorship.orphan.orphan_sponsorship_status.name}
