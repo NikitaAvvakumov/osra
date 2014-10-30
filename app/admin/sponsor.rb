@@ -49,6 +49,9 @@ ActiveAdmin.register Sponsor do
         column :orphan
         column :orphan_date_of_birth
         column :orphan_gender
+        column 'Sponsorship Start' do |_sponsorship|
+          _sponsorship.start_date
+        end
         column '' do |_sponsorship|
           link_to 'End sponsorship',
                   inactivate_admin_sponsor_sponsorship_path(sponsor_id: sponsor.id, id: _sponsorship.id),

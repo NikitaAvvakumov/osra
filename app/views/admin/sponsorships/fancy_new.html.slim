@@ -12,15 +12,19 @@
   section.orphan
     h3 Orphan: #{@sponsorship.orphan.name}
     h4 OSRA No. #{@sponsorship.orphan.osra_num}
+    p Date of Birth: #{@sponsorship.orphan.date_of_birth}
+    p Gender: #{@sponsorship.orphan.gender}
     p Priority: #{@sponsorship.orphan.priority}
     p Sponsorship Status: #{@sponsorship.orphan.orphan_sponsorship_status.name}
-
+    p Father: #{@sponsorship.orphan.father_name}, died #{@sponsorship.orphan.father_date_of_death} #{@sponsorship.orphan.father_is_martyr? ? ', Martyr' : ''}
+    p Mother: #{@sponsorship.orphan.mother_name} #{@sponsorship.orphan.mother_alive? ? ', Alive' : ', Deceased'}
+    p Minor Siblings: #{@sponsorship.orphan.minor_siblings_count}
   hr
 
   section.form-fluid
     = semantic_form_for(@sponsorship, url: sponsorship_fancy_create_path(sponsor_id: @sponsorship.sponsor.id, orphan_id: @sponsorship.orphan.id), remote: true) do |f|
 
-      = f.input :start_date
+      = f.input :start_date, label: 'Sponsorship start date'
 
       ul.form-actions
         li

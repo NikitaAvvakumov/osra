@@ -55,7 +55,9 @@ ActiveAdmin.register Sponsorship do
     def fancy_create
       sponsor = Sponsor.find(params[:sponsor_id])
       orphan = Orphan.find(params[:orphan_id])
-      @sponsorship = Sponsorship.create!(sponsor: sponsor, orphan: orphan)
+      start_date = Date.parse "#{params[:sponsorship]['start_date(1i)']}-#{params[:sponsorship]['start_date(2i)']}-#{params[:sponsorship]['start_date(3i)']}"
+      @sponsorship = Sponsorship.create!(sponsor: sponsor, orphan: orphan, start_date: start_date)
+      flash[:notice] = 'Sponsorship created.'
       render 'quick_response', layout: false
     end
   end

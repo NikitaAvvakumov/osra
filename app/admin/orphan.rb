@@ -158,7 +158,7 @@ ActiveAdmin.register Orphan do
   index do
     if params[:sponsor_id]
       panel 'Sponsor' do
-        h3 "Sponsor: #{sponsor.name}"
+        h3 link_to sponsor.name, admin_sponsor_path(sponsor)
         h4 "OSRA No. #{sponsor.osra_num}"
         para "Country: #{ISO3166::Country.search(sponsor.country)}"
         para "Additional info: #{sponsor.additional_info}"
@@ -173,7 +173,7 @@ ActiveAdmin.register Orphan do
     column :date_of_birth
     column :gender
     column :orphan_status, sortable: :orphan_status_id
-    column :priority do |orphan|
+    column :priority, sortable: :priority do |orphan|
       status_tag(orphan.priority == 'High' ? 'warn' : '', label: orphan.priority)
     end
     column :mother_alive
@@ -191,11 +191,14 @@ ActiveAdmin.register Orphan do
 
   controller do
     def create_sponsorship
-      order = params[:order].match(/(_asc|_desc)$/)[1].gsub('_', '').upcase
-      query = params[:order].split('_')[0..-2].join '_'
-      full_query = "#{query} #{order}"
       @sponsor = Sponsor.find(params[:sponsor_id])
-      @orphans = Orphan.eligible_for_sponsorship.order(full_query).page(params[:page]).per(10)
+      @orphans = Orphan.eligible_for_sponsorship.page(params[:page]).per(10)
+      if params[:order]
+        order = params[:order].match(/(_asc|_desc)$/)[1].gsub('_', '').upcase
+        query = params[:order].split('_')[0..-2].join '_'
+        full_query = "#{query} #{order}"
+        @orphans = Orphan.eligible_for_sponsorship.order(full_query).page(params[:page]).per(10)
+      end
       render action: :index, locals: { sponsor: @sponsor }, layout: false
     end
   end
