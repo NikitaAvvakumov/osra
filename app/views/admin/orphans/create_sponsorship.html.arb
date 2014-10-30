@@ -1,0 +1,4 @@
+table_for assigns[:orphans] do
+  column :osra_num
+  column :name
+end

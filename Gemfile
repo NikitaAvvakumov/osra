@@ -18,6 +18,8 @@ gem 'coveralls', require: false
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'roo'
 gem 'rails_config'
+gem 'fancybox2-rails'
+gem 'slim-rails'
 
 group :test do
   gem 'capybara'

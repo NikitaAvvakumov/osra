@@ -1,0 +1,17 @@
+#modal
+  h2 'New Sponsorship'
+
+  panel 'Sponsor' do
+    h3 "Sponsor: #{sponsorship.sponsor.name}"
+    h4 "OSRA No. #{sponsorship.sponsor.osra_num}"
+    para "Country: #{ISO3166::Country.search(sponsorship.sponsor.country)}"
+    para "Additional info: #{sponsorship.sponsor.additional_info}"
+  end
+
+  panel 'Orphans' do
+    h3 "Orphan: #{sponsorship.orphan.name}"
+    h4 "OSRA No. #{sponsorship.orphan.osra_num}"
+    para "Priority: #{sponsorship.orphan.priority}"
+    para "Current sponsorship status: #{sponsorship.orphan.orphan_sponsorship_status.name}"
+  end
+

@@ -71,6 +71,7 @@ class Orphan < ActiveRecord::Base
         -> { joins(:orphan_sponsorship_status).
             where(orphan_sponsorship_statuses: { name: ['Unsponsored', 'Previously Sponsored'] }) }
   scope :high_priority, -> { where(priority: 'High') }
+  scope :eligible_for_sponsorship, -> { self.active.currently_unsponsored }
 
   acts_as_sequenced scope: :province_code
 

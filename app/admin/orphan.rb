@@ -10,7 +10,7 @@ ActiveAdmin.register Orphan do
                 :guardian_id_num, :contact_number, :alt_contact_number,
                 :sponsored_by_another_org, :another_org_sponsorship_details,
                 :minor_siblings_count, :sponsored_minor_siblings_count,
-                :comments, :orphan_status_id, :priority,
+                :comments, :orphan_status_id, :priority, :sponsor_id,
                 original_address_attributes: [:id, :city, :province_id,
                                               :neighborhood, :street, :details],
                 current_address_attributes: [:id, :city, :province_id,
@@ -156,6 +156,14 @@ ActiveAdmin.register Orphan do
   end
 
   index do
+    if sponsor
+      panel 'Sponsor' do
+        h3 "Sponsor: #{sponsor.name}"
+        h4 "OSRA No. #{sponsor.osra_num}"
+        para "Country: #{ISO3166::Country.search(sponsor.country)}"
+        para "Additional info: #{sponsor.additional_info}"
+      end
+    end
     column 'OSRA No.', sortable: :osra_num do |orphan|
       link_to orphan.osra_num, admin_orphan_path(orphan)
     end
@@ -171,6 +179,21 @@ ActiveAdmin.register Orphan do
     column :mother_alive
     column 'Sponsorship', sortable: :orphan_sponsorship_status_id do |orphan|
       orphan.orphan_sponsorship_status.name
+    end
+    if sponsor
+      column 'Sponsorship' do |orphan|
+        link_to 'Sponsor',
+                sponsorship_fancy_new_path(sponsor_id: sponsor.id, orphan_id: orphan.id),
+                class: 'fancybox', data: { 'fancybox-type' => 'ajax' }
+      end
+    end
+  end
+
+  controller do
+    def create_sponsorship
+      @sponsor = Sponsor.find(params[:sponsor_id])
+      @orphans = Orphan.eligible_for_sponsorship.page(params[:page]).per(10)
+      render action: :index, locals: { sponsor: @sponsor }, layout: false
     end
   end
 end

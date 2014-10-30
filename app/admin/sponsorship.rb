@@ -44,7 +44,21 @@ ActiveAdmin.register Sponsorship do
       flash[:success] = 'Sponsorship link was successfully created'
       redirect_to admin_sponsor_path(@sponsor)
     end
+
+    def fancy_new
+      sponsor = Sponsor.find(params[:sponsor_id])
+      orphan = Orphan.find(params[:orphan_id])
+      @sponsorship = Sponsorship.new(sponsor: sponsor, orphan: orphan)
+      render layout: false
+    end
+
+    def fancy_create
+      @sponsor = Sponsor.find(params[:sponsor_id])
+      @orphan = Orphan.find(params[:orphan_id])
+      Sponsorship.create!(sponsor: @sponsor, orphan: @orphan)
+      render 'quick_response', layout: false
+    end
   end
 
-  permit_params :orphan_id
+  permit_params :orphan_id, :sponsor_id
 end
