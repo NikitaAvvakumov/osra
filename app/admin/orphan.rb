@@ -10,7 +10,7 @@ ActiveAdmin.register Orphan do
                 :guardian_id_num, :contact_number, :alt_contact_number,
                 :sponsored_by_another_org, :another_org_sponsorship_details,
                 :minor_siblings_count, :sponsored_minor_siblings_count,
-                :comments, :orphan_status_id, :priority, :sponsor_id,
+                :comments, :orphan_status_id, :priority, :sponsor_id, :page,
                 original_address_attributes: [:id, :city, :province_id,
                                               :neighborhood, :street, :details],
                 current_address_attributes: [:id, :city, :province_id,
@@ -156,7 +156,7 @@ ActiveAdmin.register Orphan do
   end
 
   index do
-    if sponsor
+    if params[:sponsor_id]
       panel 'Sponsor' do
         h3 "Sponsor: #{sponsor.name}"
         h4 "OSRA No. #{sponsor.osra_num}"
@@ -180,7 +180,7 @@ ActiveAdmin.register Orphan do
     column 'Sponsorship', sortable: :orphan_sponsorship_status_id do |orphan|
       orphan.orphan_sponsorship_status.name
     end
-    if sponsor
+    if params[:sponsor_id]
       column 'Sponsorship' do |orphan|
         link_to 'Sponsor',
                 sponsorship_fancy_new_path(sponsor_id: sponsor.id, orphan_id: orphan.id),
@@ -191,8 +191,11 @@ ActiveAdmin.register Orphan do
 
   controller do
     def create_sponsorship
+      order = params[:order].match(/(_asc|_desc)$/)[1].gsub('_', '').upcase
+      query = params[:order].split('_')[0..-2].join '_'
+      full_query = "#{query} #{order}"
       @sponsor = Sponsor.find(params[:sponsor_id])
-      @orphans = Orphan.eligible_for_sponsorship.page(params[:page]).per(10)
+      @orphans = Orphan.eligible_for_sponsorship.order(full_query).page(params[:page]).per(10)
       render action: :index, locals: { sponsor: @sponsor }, layout: false
     end
   end
