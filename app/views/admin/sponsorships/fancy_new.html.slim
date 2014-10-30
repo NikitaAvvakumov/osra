@@ -1,6 +1,5 @@
 #modal
   h2 New Sponsorship
-  p.modal-description New Sponsorship
 
   section.sponsor
     h3 Sponsor #{@sponsorship.sponsor.name}
@@ -8,8 +7,21 @@
     p Country: #{ISO3166::Country.search(@sponsorship.sponsor.country)}
     p Additional info: #{@sponsorship.sponsor.additional_info}
 
+  hr
+
   section.orphan
     h3 Orphan: #{@sponsorship.orphan.name}
     h4 OSRA No. #{@sponsorship.orphan.osra_num}
     p Priority: #{@sponsorship.orphan.priority}
-    p Current sponsorship status: #{@sponsorship.orphan.orphan_sponsorship_status.name}
+    p Sponsorship Status: #{@sponsorship.orphan.orphan_sponsorship_status.name}
+
+  hr
+
+  section.form-fluid
+    = semantic_form_for(@sponsorship, url: sponsorship_fancy_create_path(sponsor_id: @sponsorship.sponsor.id, orphan_id: @sponsorship.orphan.id), remote: true) do |f|
+
+      = f.input :start_date
+
+      ul.form-actions
+        li
+          = f.submit 'Create sponsorship'

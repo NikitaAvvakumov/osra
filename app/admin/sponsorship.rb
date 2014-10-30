@@ -53,9 +53,9 @@ ActiveAdmin.register Sponsorship do
     end
 
     def fancy_create
-      @sponsor = Sponsor.find(params[:sponsor_id])
-      @orphan = Orphan.find(params[:orphan_id])
-      Sponsorship.create!(sponsor: @sponsor, orphan: @orphan)
+      sponsor = Sponsor.find(params[:sponsor_id])
+      orphan = Orphan.find(params[:orphan_id])
+      @sponsorship = Sponsorship.create!(sponsor: sponsor, orphan: orphan)
       render 'quick_response', layout: false
     end
   end
