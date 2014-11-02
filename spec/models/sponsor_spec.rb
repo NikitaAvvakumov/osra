@@ -19,6 +19,7 @@ describe Sponsor, type: :model do
 
   it { is_expected.to validate_inclusion_of(:gender).in_array %w(Male Female) }
   it { is_expected.to validate_inclusion_of(:country).in_array ISO3166::Country.countries.map {|c| c[1]} - ['IL']}
+  it { is_expected.to validate_inclusion_of(:payment_plan).in_array(Sponsor::PAYMENT_PLANS).allow_nil(true).allow_blank(true) }
 
   [7, 'yes', true].each do |bad_date_value|
     it { is_expected.to_not allow_value(bad_date_value).for :start_date }

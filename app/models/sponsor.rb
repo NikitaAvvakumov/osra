@@ -1,6 +1,7 @@
 class Sponsor < ActiveRecord::Base
   include Initializer
 
+  PAYMENT_PLANS = ['Monthly', 'Every Two Months', 'Every Four Months', 'Every Six Months', 'Other']
   attr_readonly :branch_id, :organization_id, :sponsor_type_id
 
   after_initialize :default_status_to_active,
@@ -22,6 +23,7 @@ class Sponsor < ActiveRecord::Base
   validate :can_be_inactivated, if: :being_inactivated?, on: :update
   validates_format_of :email, with: Devise.email_regexp, allow_blank: true
   validate :type_matches_affiliation, on: :create
+  validates :payment_plan, inclusion: { in: PAYMENT_PLANS }, allow_nil: true, allow_blank: true
 
   belongs_to :branch
   belongs_to :organization
