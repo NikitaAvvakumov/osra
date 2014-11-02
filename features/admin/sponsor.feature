@@ -44,12 +44,14 @@ Feature:
     And I select "Spain" from the drop down box for "Country"
     And I select "Male" from the drop down box for "Gender"
     And I select "Jeddah" from the drop down box for "Branch"
+    And I select "Monthly" from the drop down box for "Payment plan"
     And I select "Individual" from the drop down box for "Sponsor type"
     And I should not see "Request fulfilled"
     And I click the "Create Sponsor" button
     Then I should be on the "Show Sponsor" page for sponsor "Sponsor4"
     And I should see "Sponsor was successfully created"
     And I should see "Sponsor4"
+    And I should see "Monthly"
 
   Scenario: I should see the required fields on the index page
     Given I am on the "Sponsors" page for the "Admin" role
