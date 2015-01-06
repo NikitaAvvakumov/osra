@@ -21,7 +21,7 @@ gem 'devise' # Authentication solution
 gem 'jquery-rails'
 gem 'paperclip', '~> 4.2.1'
 gem 'aws-sdk'
-gem 'coveralls', require: false
+# gem 'coveralls', require: false
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'roo'
 gem 'rails_config'
@@ -35,6 +35,7 @@ group :test do
   gem 'headless' # gem that allows capybara-webkit to run without calling xvfb directly
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false # one-line tests for common Rails validations
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :development, :test do
