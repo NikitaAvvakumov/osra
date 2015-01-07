@@ -20,3 +20,4 @@ In our development process, we follow Agile methods by continuously interacting 
 We welcome all contributions. Please see `CONTRIBUTING.md` for details.
 
 _Update Dec. 28, 2014: **The first phase of development is now complete and has been delivered to the client. The application is now live!**_
+
