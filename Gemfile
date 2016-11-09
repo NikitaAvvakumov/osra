@@ -10,15 +10,15 @@ gem 'bootstrap-sass', '~> 3.3.3' # sass powered version of bootstrap
 gem 'bootstrap-datepicker-rails', '~> 1.3.1' # bootstrap datepicker
 gem 'autoprefixer-rails', '~> 6.5.1' # auto add vendor prefixes to CSS rules
 gem 'coffee-rails', '~> 4.1.0' # use Coffeescript
-gem 'uglifier', '>= 2.6.0' # compressor for JavaScript assets
+gem 'uglifier', '~> 3.0.3' # compressor for JavaScript assets
 gem 'sequenced', '>= 2.0.0' # sequential IDs in Models
-gem 'devise', '~> 3.4.1' # authentication solution
-gem 'jquery-rails', '~> 4.0.3' # use jquery with Rails
+gem 'devise', '~> 3.5.10' # authentication solution
+gem 'jquery-rails', '~> 4.2.1' # use jquery with Rails
 gem 'paperclip', '~> 4.2.1' # upload attachment files
 gem 'aws-sdk', '< 2.0' # Amazon Web Services - S3 bucket for Paperclip;
 # as of 07-04-2015, paperclip is not yet compatible with aws-sdk v2.0
 gem 'coveralls', '~> 0.7.9', require: false # measure test coverage
-gem 'country_select', github: 'stefanpenner/country_select' # country drop-down
+gem 'country_select', github: 'stefanpenner/country_select', ref: '68ae9f919e35b3268c1398490d45c6a88f1e3ca1' # country drop-down
 gem 'roo', '~> 1.13.2' # access contents of spreadsheet files
 gem 'rails_config', '~> 0.4.2' # TODO: consider removing after importer settings refactored
 gem 'newrelic_rpm', '~> 3.10.0' # application monitoring on Heroku
