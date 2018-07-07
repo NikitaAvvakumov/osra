@@ -40,10 +40,15 @@ RSpec.describe 'sponsors/index.html.haml', type: :view do
     expect(rendered).to have_content('Displaying ' + sponsors.count.to_s + ' of ' + sponsors_count.to_s + ' Sponsors.')
   end
 
-  describe 'class action-items should have link' do
+  describe 'content header should have link' do
     specify 'New Sponsor' do
       render
       expect(rendered).to have_link('New Sponsor', new_sponsor_path)
+    end
+
+    specify 'New Organization' do
+      render
+      expect(rendered).to have_link('New Organization', new_organization_path)
     end
   end
 
