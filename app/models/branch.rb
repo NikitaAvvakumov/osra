@@ -1,4 +1,4 @@
-class Branch < ActiveRecord::Base
+class Branch < ApplicationRecord
 
   validates :name, presence: true
   validates :code, presence: true, uniqueness: true,

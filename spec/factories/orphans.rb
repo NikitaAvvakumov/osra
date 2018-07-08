@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :orphan do
     name { Faker::Name.first_name }
     date_of_birth { 10.years.ago }

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "pending_orphan_lists/upload.html.erb", type: :view do
-  let(:partner) { FactoryGirl.build_stubbed :partner }
+  let(:partner) { FactoryBot.build_stubbed :partner }
 
   before :each do
     assign :partner, partner

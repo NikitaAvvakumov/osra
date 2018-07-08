@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "users/_form.html.erb", type: :view do
 
   before :each do
-    @user = FactoryGirl.build_stubbed(:user)
+    @user = FactoryBot.build_stubbed(:user)
     render partial: 'form', locals: { cancel_path: 'some cancel url' }
   end
 

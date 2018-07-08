@@ -24,11 +24,11 @@ RSpec.feature 'User views a sorted partners list by clicking the table headers',
 end
 
 def an_unordered_list_of_partners_exists
-  FactoryGirl.create(:partner, name: "Carl", start_date: "14 April 2015")
-  FactoryGirl.create(:partner, name: "Aaron", start_date: "15 April 2015")
-  FactoryGirl.create(:partner, name: "Tom", start_date: "12 April 2015")
-  FactoryGirl.create(:partner, name: "John", start_date: "11 April 2015")
-  FactoryGirl.create(:partner, name: "Bob", start_date: "13 April 2015")
+  FactoryBot.create(:partner, name: "Carl", start_date: "14 April 2015")
+  FactoryBot.create(:partner, name: "Aaron", start_date: "15 April 2015")
+  FactoryBot.create(:partner, name: "Tom", start_date: "12 April 2015")
+  FactoryBot.create(:partner, name: "John", start_date: "11 April 2015")
+  FactoryBot.create(:partner, name: "Bob", start_date: "13 April 2015")
 end
 
 def i_should_see_partners_ordered_as names_order

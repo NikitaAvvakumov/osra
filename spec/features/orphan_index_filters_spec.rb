@@ -20,11 +20,11 @@ RSpec.feature 'User views a filtered orphans list by using the filter form', :ty
 end
 
 def a_list_of_orphans_exists
-  FactoryGirl.create_list(:orphan_full, 5)
+  FactoryBot.create_list(:orphan_full, 5)
 end
 
 def when_i_fill_in_orphan_filter_form
-  orphan_filter = FactoryGirl.build(:orphan_filter, orphan: Orphan.first)
+  orphan_filter = FactoryBot.build(:orphan_filter, orphan: Orphan.first)
 
   visit orphans_path
 
@@ -77,7 +77,7 @@ def then_i_should_see_a_filtered_orphans_list
 end
 
 def and_i_should_see_filters_form_filled_for_orphan
-  orphan_filter = FactoryGirl.build(:orphan_filter, orphan: Orphan.first)
+  orphan_filter = FactoryBot.build(:orphan_filter, orphan: Orphan.first)
 
   within "#filters" do
     #text fields

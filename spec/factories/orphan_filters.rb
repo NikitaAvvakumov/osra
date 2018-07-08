@@ -2,10 +2,10 @@ class OrphanFilter < Hash
 end
 
 # USE:
-# FactoryGirl.build(:orphan_filter)   to create default orphan_filter
-# FactoryGirl.build(:orphan_filter, orphan: FactoryGirl.build_stubbed(:orphan, name: "AA")) to overwrite attributes
-# FactoryGirl.build(:orphan_filter, name_option: "contains", orphan: FactoryGirl.create(:orphan, name: "AA")) to overwrite attributes
-FactoryGirl.define do
+# FactoryBot.build(:orphan_filter)   to create default orphan_filter
+# FactoryBot.build(:orphan_filter, orphan: FactoryBot.build_stubbed(:orphan, name: "AA")) to overwrite attributes
+# FactoryBot.build(:orphan_filter, name_option: "contains", orphan: FactoryBot.create(:orphan, name: "AA")) to overwrite attributes
+FactoryBot.define do
   factory :orphan_filter do
     orphan {build_stubbed :orphan_full}
 

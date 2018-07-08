@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'users/_sponsors.html.haml', type: :view do
   describe 'sponsors exist' do
     let(:sponsors) do
-      [FactoryGirl.build_stubbed(:sponsor), FactoryGirl.build_stubbed(:sponsor)]
+      [FactoryBot.build_stubbed(:sponsor), FactoryBot.build_stubbed(:sponsor)]
     end
 
     it 'should render something besides "No Sponsors found"' do

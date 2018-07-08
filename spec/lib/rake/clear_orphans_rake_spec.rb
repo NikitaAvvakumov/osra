@@ -9,10 +9,10 @@ describe 'rake db:clear_orphans' do
 
     3.times { PendingOrphan.create }
     3.times { PendingOrphanList.create(:spreadsheet_file_name => 'file.xls') }
-    one_sponsor = FactoryGirl.create :sponsor, :requested_orphan_count => 1
-    two_sponsor = FactoryGirl.create :sponsor, :requested_orphan_count => 2
-    2.times { FactoryGirl.create :sponsorship, sponsor: two_sponsor }
-    FactoryGirl.create :sponsorship, sponsor: one_sponsor
+    one_sponsor = FactoryBot.create :sponsor, :requested_orphan_count => 1
+    two_sponsor = FactoryBot.create :sponsor, :requested_orphan_count => 2
+    2.times { FactoryBot.create :sponsorship, sponsor: two_sponsor }
+    FactoryBot.create :sponsorship, sponsor: one_sponsor
 
     silence_stream(STDOUT) do
       Rake::Task['db:clear_orphans'].invoke

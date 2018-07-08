@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'layouts/application.html.erb', type: :view do
   before :each do
-    @admin = FactoryGirl.create :admin_user
+    @admin = FactoryBot.create :admin_user
     sign_in @admin
   end
 

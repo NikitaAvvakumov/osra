@@ -100,7 +100,7 @@ describe Partner, type: :model do
 
   describe 'update' do
     it 'should not change province' do
-      partner = FactoryGirl.create(:partner)
+      partner = FactoryBot.create(:partner)
       remaining_provinces = Province.where.not(id: partner.province.id)
       new_province = remaining_provinces.sample
       partner.update!(name: "Updated Name", region: "Updated Region", contact_details: "Updated Details", province: new_province)

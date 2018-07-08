@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
 
-  COUNTRIES = ISO3166::Country.countries.map {|c| c[1]} - Sponsor::EXCLUDED_COUNTRYS
+  COUNTRIES = ISO3166::Country.countries.map {|c| c.un_locode} - Sponsor::EXCLUDED_COUNTRYS
 
   sequence :countries, (0..(COUNTRIES.count - 1)).cycle do |n|
     COUNTRIES[n]

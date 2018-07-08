@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "sponsors/show.html.haml", type: :view do
-  let(:user) { FactoryGirl.build_stubbed(:user) }
-  let(:sponsor) { FactoryGirl.build_stubbed(:sponsor, agent: user) }
+  let(:user) { FactoryBot.build_stubbed(:user) }
+  let(:sponsor) { FactoryBot.build_stubbed(:sponsor, agent: user) }
 
   describe 'the sponsor exists' do
     before :each do

@@ -1,4 +1,4 @@
-class Sponsor < ActiveRecord::Base
+class Sponsor < ApplicationRecord
   include Initializer
   include DateHelpers
   include SponsorAttrFilter
@@ -16,20 +16,20 @@ class Sponsor < ActiveRecord::Base
                    :default_start_date_to_today,
                    :default_type_to_individual
   before_create :generate_osra_num, :set_request_unfulfilled
-  before_update :set_request_fulfilled, if: 'requested_orphan_count_changed?'
+  before_update :set_request_fulfilled, if: :requested_orphan_count_changed?
   before_validation :set_city
 
   validates :name, presence: true
   validates :requested_orphan_count, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-  validates :country, presence: true, inclusion: { in: ISO3166::Country.countries.map { |c| c[1] } - ['IL'] }
+  validates :country, presence: true, inclusion: { in: ISO3166::Country.countries.map { |c| c.un_locode } - ['IL'] }
   validates :city, presence: true,
             exclusion: { in: [NEW_CITY_MENU_OPTION],
                          message: 'Please enter city name below. &darr;' }
   validates :request_fulfilled, inclusion: { in: [true, false] }
   validates :sponsor_type, presence: true
   validates :status_id, presence: true
-  validates :gender, inclusion: { in: Settings.lookup.gender }, presence: true
+  validates :gender, inclusion: { in: ::Settings.lookup.gender }, presence: true
   validates :payment_plan, allow_nil: false, allow_blank: true, inclusion: { in: PAYMENT_PLANS }
   validates :start_date, valid_date_presence: true,
                          date_beyond_osra_establishment: true,

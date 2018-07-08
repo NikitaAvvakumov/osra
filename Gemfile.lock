@@ -809,8 +809,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    rails_config (0.99.0)
-      config (>= 1.0.0.beta1)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -919,6 +917,7 @@ DEPENDENCIES
   bootstrap-sass
   capybara
   coffee-rails
+  config
   country_select
   coveralls
   devise
@@ -934,7 +933,6 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   rails (~> 5.2.0)
-  rails_config
   roo
   rspec-rails
   sass-rails

@@ -2,10 +2,10 @@ class SponsorFilter < Hash
 end
 
 # USE:
-# FactoryGirl.build(:sponsor_filter)   to create default sponsor_filter
-# FactoryGirl.build(:sponsor_filter, sponsor: FactoryGirl.build_stubbed(:sponsor, name: "AA")) to overwrite attributes
-# FactoryGirl.build(:sponsor_filter, name_option: "contains", sponsor: FactoryGirl.create(:sponsor, name: "AA")) to overwrite attributes
-FactoryGirl.define do
+# FactoryBot.build(:sponsor_filter)   to create default sponsor_filter
+# FactoryBot.build(:sponsor_filter, sponsor: FactoryBot.build_stubbed(:sponsor, name: "AA")) to overwrite attributes
+# FactoryBot.build(:sponsor_filter, name_option: "contains", sponsor: FactoryBot.create(:sponsor, name: "AA")) to overwrite attributes
+FactoryBot.define do
   factory :sponsor_filter do
     sponsor {build_stubbed :sponsor}
 

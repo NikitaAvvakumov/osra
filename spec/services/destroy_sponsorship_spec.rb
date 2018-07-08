@@ -2,9 +2,9 @@ require 'rails_helper'
 require 'destroy_sponsorship'
 
 describe DestroySponsorship do
-  let(:sponsor) { FactoryGirl.create :sponsor, requested_orphan_count: 1 }
-  let(:orphan) { FactoryGirl.create :orphan }
-  let(:sponsorship) { FactoryGirl.build :sponsorship, sponsor: sponsor,
+  let(:sponsor) { FactoryBot.create :sponsor, requested_orphan_count: 1 }
+  let(:orphan) { FactoryBot.create :orphan }
+  let(:sponsorship) { FactoryBot.build :sponsorship, sponsor: sponsor,
                       orphan: orphan }
   let(:service) { DestroySponsorship.new(sponsorship) }
 

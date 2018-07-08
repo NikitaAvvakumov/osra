@@ -1,6 +1,6 @@
 require 'csv'
 
-class Orphan < ActiveRecord::Base
+class Orphan < ApplicationRecord
   include Initializer
   include DateHelpers
   include OrphanAttrFilter

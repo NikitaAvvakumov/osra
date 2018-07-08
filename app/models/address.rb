@@ -1,4 +1,4 @@
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
 
   validates :province, presence: true
   validates :city, presence: true

@@ -26,9 +26,6 @@ module Osra
     # config.i18n.default_locale = :de
     I18n.enforce_available_locales = false
 
-    # No longer suppress errors raised within `after_rollback` & `after_commit`
-    config.active_record.raise_in_transactional_callbacks = true
-
     # Add path to validators
     config.autoload_paths += %W(#{config.root}/app/models/validators/)
 

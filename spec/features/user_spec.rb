@@ -92,23 +92,23 @@ RSpec.feature 'User', :type => :feature do
 
 
   def an_user_exist( id, user_name, user_email )
-    FactoryGirl.create :user, id: id, user_name: user_name, email: user_email
+    FactoryBot.create :user, id: id, user_name: user_name, email: user_email
   end
 
   def a_sponsorship_exist( user_id )
-      FactoryGirl.create :sponsor, agent_id: user_id, name: 'Sponsor 1'
+      FactoryBot.create :sponsor, agent_id: user_id, name: 'Sponsor 1'
   end
 
   def create_active_sponsors(user_id, names)
     names.each do |name|
-      FactoryGirl.create(:sponsor, agent_id: user_id, name: name)
+      FactoryBot.create(:sponsor, agent_id: user_id, name: name)
     end
   end
 
   def create_inactive_sponsors(user_id, names)
     inactive_status = Status.find_by_name('Inactive')
     names.each do |name|
-      FactoryGirl.create(:sponsor, agent_id: user_id, name: name, status: inactive_status)
+      FactoryBot.create(:sponsor, agent_id: user_id, name: name, status: inactive_status)
     end
   end
 end

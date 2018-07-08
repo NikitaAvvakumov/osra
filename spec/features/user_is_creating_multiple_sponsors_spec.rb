@@ -16,7 +16,7 @@ RSpec.feature 'User enters new sponsor data', :type => :feature do
   end
 
   def an_agent_exists
-    FactoryGirl.create :agent
+    FactoryBot.create :agent
   end
 
   def when_i_enter_new_sponsor_info

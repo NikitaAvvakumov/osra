@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "orphans/show.html.erb", type: :view do
-  let(:orphan) { FactoryGirl.create(:orphan) }
+  let(:orphan) { FactoryBot.create(:orphan) }
 
   describe 'the orphan exists' do
     before :each do

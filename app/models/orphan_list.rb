@@ -1,4 +1,4 @@
-class OrphanList < ActiveRecord::Base
+class OrphanList < ApplicationRecord
 
   before_create :generate_osra_num
 

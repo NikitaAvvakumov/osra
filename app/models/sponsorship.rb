@@ -1,4 +1,4 @@
-class Sponsorship < ActiveRecord::Base
+class Sponsorship < ApplicationRecord
 
   include Initializer
 

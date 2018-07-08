@@ -5,7 +5,7 @@ RSpec.describe "partners/index.html.erb", type: :view do
   context 'partners exist' do
     let(:partners) do
       (1..5).each_with_object([]) do |num, arr|
-        arr << FactoryGirl.build_stubbed(:partner)
+        arr << FactoryBot.build_stubbed(:partner)
       end.paginate(:page => 2, :per_page => 2)
     end
 

@@ -3,7 +3,7 @@ module SponsorAttrFilter
 
   included do
     extend WhereWithCondition
-    self::ActiveRecord_Relation.include WhereWithCondition
+    # self::ActiveRecord_Relation.include WhereWithCondition
 
     scope :filter, ->(filters) do
       self

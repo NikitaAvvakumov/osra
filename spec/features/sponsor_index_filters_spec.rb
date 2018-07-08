@@ -20,11 +20,11 @@ RSpec.feature 'User views a filtered sponsors list by using the filter form', :t
 end
 
 def a_list_of_sponsors_exists
-  FactoryGirl.create_list(:sponsor, 5)
+  FactoryBot.create_list(:sponsor, 5)
 end
 
 def when_i_fill_in_sponsor_filter_form
-  sponsor_filter = FactoryGirl.build(:sponsor_filter, sponsor: Sponsor.first)
+  sponsor_filter = FactoryBot.build(:sponsor_filter, sponsor: Sponsor.first)
   visit sponsors_path
 
   within "#filters" do
@@ -72,7 +72,7 @@ def then_i_should_see_a_filtered_sponsors_list
 end
 
 def and_i_should_see_filters_form_filled
-  sponsor_filter = FactoryGirl.build(:sponsor_filter, sponsor: Sponsor.first)
+  sponsor_filter = FactoryBot.build(:sponsor_filter, sponsor: Sponsor.first)
 
   within "#filters" do
     #text fields

@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'resolve_orphan_sponsorship_status'
 
 describe ResolveOrphanSponsorshipStatus do
-  let(:orphan) { FactoryGirl.create :orphan }
+  let(:orphan) { FactoryBot.create :orphan }
   let(:service) { ResolveOrphanSponsorshipStatus.new(orphan) }
 
   context 'when unsponsored' do
@@ -12,7 +12,7 @@ describe ResolveOrphanSponsorshipStatus do
   end
 
   describe 'with sponsorships' do
-    let(:sponsorship) { FactoryGirl.build :sponsorship, orphan: orphan }
+    let(:sponsorship) { FactoryBot.build :sponsorship, orphan: orphan }
     before do
       CreateSponsorship.new(sponsorship).call
     end

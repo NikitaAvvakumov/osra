@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe '#edit and #update' do
     before :each do
-      @old_user = FactoryGirl.build_stubbed(:user)
+      @old_user = FactoryBot.build_stubbed(:user)
       expect(User).to receive(:find).and_return(@old_user)
     end
 
@@ -68,7 +68,7 @@ RSpec.describe UsersController, type: :controller do
   describe '#create' do
 
     before :each do
-      @new_user = FactoryGirl.build_stubbed(:user, user_name: nil, email: nil)
+      @new_user = FactoryBot.build_stubbed(:user, user_name: nil, email: nil)
       allow(User).to receive(:new).and_return(@new_user)
     end
 

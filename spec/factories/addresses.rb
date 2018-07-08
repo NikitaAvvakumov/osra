@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :address do
     province { Province.all[(0..13).to_a.sample] }
     city { Faker::Address.city }

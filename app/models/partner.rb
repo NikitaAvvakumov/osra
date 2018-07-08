@@ -1,4 +1,4 @@
-class Partner < ActiveRecord::Base
+class Partner < ApplicationRecord
   include Initializer
 
   self.per_page = 10

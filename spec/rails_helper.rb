@@ -47,8 +47,8 @@ RSpec.configure do |config|
   config.include FeatureHelpers::Navigation, type: :feature
   config.include FeatureHelpers::Factories, type: :feature
 
-  # Use FactoryGirl methods without prefacing them with 'FactoryGirl.'
-  config.include FactoryGirl::Syntax::Methods
+  # Use FactoryBot methods without prefacing them with 'FactoryBot.'
+  config.include FactoryBot::Syntax::Methods
 
   config.global_fixtures = :all
 end

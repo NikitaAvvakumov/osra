@@ -1,4 +1,4 @@
-class PendingOrphan < ActiveRecord::Base
+class PendingOrphan < ApplicationRecord
   belongs_to :pending_orphan_list
   after_initialize :create_orphan
   attr_accessor :orphan

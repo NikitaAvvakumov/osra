@@ -4,7 +4,7 @@ require 'will_paginate/array'
 RSpec.describe 'sponsors/_sponsors.html.haml', type: :view do
   describe 'sponsors exist' do
     let(:sponsors) do
-      [FactoryGirl.build_stubbed(:sponsor), FactoryGirl.build_stubbed(:sponsor)]
+      [FactoryBot.build_stubbed(:sponsor), FactoryBot.build_stubbed(:sponsor)]
     end
 
     it 'should render something besides "No Sponsors found"' do
@@ -59,7 +59,7 @@ RSpec.describe 'sponsors/_sponsors.html.haml', type: :view do
   end
 
   describe 'required attributes:' do
-    let(:sponsor) { FactoryGirl.build_stubbed(:sponsor) }
+    let(:sponsor) { FactoryBot.build_stubbed(:sponsor) }
 
     before :each do
       render :partial => 'sponsors/sponsors.html.haml', :locals => {:sponsors => [sponsor].paginate(page: 1)}

@@ -3,7 +3,7 @@ require 'cgi'
 
 RSpec.describe 'users/show.html.erb', type: :view do
   describe 'user' do
-    let(:user) { FactoryGirl.build_stubbed :user }
+    let(:user) { FactoryBot.build_stubbed :user }
 
     before :each do
       assign :user, user

@@ -2,9 +2,9 @@ require 'rails_helper'
 require 'inactivate_sponsorship'
 
 describe InactivateSponsorship do
-  let(:sponsor) { FactoryGirl.create :sponsor, requested_orphan_count: 1 }
-  let(:orphan) { FactoryGirl.create :orphan }
-  let(:sponsorship) { FactoryGirl.build :sponsorship, sponsor: sponsor,
+  let(:sponsor) { FactoryBot.create :sponsor, requested_orphan_count: 1 }
+  let(:orphan) { FactoryBot.create :orphan }
+  let(:sponsorship) { FactoryBot.build :sponsorship, sponsor: sponsor,
                       orphan: orphan }
   let(:service) { InactivateSponsorship.new(sponsorship: sponsorship,
                                             end_date: Date.current) }

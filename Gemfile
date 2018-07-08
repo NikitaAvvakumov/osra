@@ -25,7 +25,7 @@ gem 'aws-sdk' #, '< 2.0' # Amazon Web Services - S3 bucket for Paperclip;
 gem 'coveralls' #, '~> 0.7.9', require: false # measure test coverage
 gem 'country_select' #, github: 'stefanpenner/country_select' # country drop-down
 gem 'roo' #, '~> 1.13.2' # access contents of spreadsheet files
-gem 'rails_config' #, '~> 0.4.2' # TODO: consider removing after importer settings refactored
+gem 'config' #, '~> 0.4.2' # TODO: consider removing after importer settings refactored
 gem 'haml' #, '~> 4.0.6'  # [view] templating engine
 gem 'will_paginate' #, '~> 3.0.7' # pagination gem for rails branch
 gem 'will_paginate-bootstrap' #, '~> 1.0.1' # bootstrap integration with will_paginate

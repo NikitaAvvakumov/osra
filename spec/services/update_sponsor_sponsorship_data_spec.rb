@@ -2,8 +2,8 @@ require 'rails_helper'
 require 'update_sponsor_sponsorship_data'
 
 describe UpdateSponsorSponsorshipData do
-  let(:sponsor) { FactoryGirl.create :sponsor, requested_orphan_count: 1 }
-  let!(:sponsorship) { FactoryGirl.create :sponsorship, sponsor: sponsor }
+  let(:sponsor) { FactoryBot.create :sponsor, requested_orphan_count: 1 }
+  let!(:sponsorship) { FactoryBot.create :sponsorship, sponsor: sponsor }
   let(:service) { UpdateSponsorSponsorshipData.new(sponsor) }
 
   describe '#call' do

@@ -1,4 +1,4 @@
-class PendingOrphanList < ActiveRecord::Base
+class PendingOrphanList < ApplicationRecord
   has_attached_file :spreadsheet
 
   validates_attachment :spreadsheet, presence: true,
