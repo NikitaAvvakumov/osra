@@ -1,7 +1,11 @@
 class Sponsor < ApplicationRecord
   include Initializer
   include DateHelpers
-  include SponsorAttrFilter
+  # include SponsorAttrFilter
+  include Filterable
+  include SponsorFilters
+
+  scope :filter, -> (filters) { filtered(filters) }
 
   NEW_CITY_MENU_OPTION = '**Add New**'
   PAYMENT_PLANS = ['Monthly', 'Every Two Months', 'Every Four Months', 'Every Six Months', 'Annually', 'Other']
